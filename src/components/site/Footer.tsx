@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin, Globe, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -42,13 +42,23 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-display text-lg mb-5 text-gold-light">Connect</h4>
-            <div className="flex gap-3">
-              <a href="https://www.facebook.com/profile.php?id=61580419684127" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110"><Facebook className="w-5 h-5" /></a>
-              <a href="https://www.instagram.com/pragati.saree/" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110"><Instagram className="w-5 h-5" /></a>
-            </div>
-            <p className="mt-6 text-xs text-primary-foreground/70">Follow us for the latest collections, festive launches and wholesale offers.</p>
-          </div>
+  <h4 className="font-display text-lg mb-5 text-gold-light">Connect</h4>
+  <div className="flex gap-3">
+    <a href="https://www.facebook.com/profile.php?id=61580419684127" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110">
+      <Facebook className="w-5 h-5" />
+    </a>
+    <a href="https://www.instagram.com/pragati.saree/" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110">
+      <Instagram className="w-5 h-5" />
+    </a>
+    <a href="https://twitter.com/pragatisarees" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110">
+      <Twitter className="w-5 h-5" />
+    </a>
+    <a href="https://www.youtube.com/@PragatiSarees" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gold-light/40 flex items-center justify-center hover:bg-gold hover:border-gold transition-all hover:scale-110">
+      <Youtube className="w-5 h-5" />
+    </a>
+  </div>
+  <p className="mt-6 text-xs text-primary-foreground/70">Follow us for the latest collections, festive launches and wholesale offers.</p>
+        </div>
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-primary-foreground/70">
