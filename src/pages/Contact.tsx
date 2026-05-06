@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Mail, Phone, MapPin, MessageCircle, Send, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Layout from "@/components/site/Layout";
 import PageHero from "@/components/site/PageHero";
 import { toast } from "sonner";
@@ -123,12 +123,52 @@ const Contact = () => {
             </a>
 
             <div className="p-6 rounded-2xl bg-card border border-border">
-              <div className="text-xs uppercase tracking-widest text-gold-dark mb-3">Follow Us</div>
-              <div className="flex gap-3">
-                <a href="https://www.facebook.com/profile.php?id=61580419684127" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"><Facebook className="w-5 h-5" /></a>
-                <a href="https://www.instagram.com/pragati.saree/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"><Instagram className="w-5 h-5" /></a>
-              </div>
-            </div>
+  <div className="text-xs uppercase tracking-widest text-gold-dark mb-3">
+    Follow Us
+  </div>
+
+  <div className="flex gap-3">
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/profile.php?id=61580419684127"
+      target="_blank"
+      rel="noreferrer"
+      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+    >
+      <Facebook className="w-5 h-5" />
+    </a>
+
+    {/* Instagram */}
+    <a
+      href="https://www.instagram.com/pragati.saree/"
+      target="_blank"
+      rel="noreferrer"
+      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+    >
+      <Instagram className="w-5 h-5" />
+    </a>
+
+    {/* Twitter */}
+    <a
+      href="https://twitter.com/"  // replace with your actual Twitter link
+      target="_blank"
+      rel="noreferrer"
+      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+    >
+      <Twitter className="w-5 h-5" />
+    </a>
+
+    {/* YouTube */}
+    <a
+      href="https://www.youtube.com/"  // replace with your actual YouTube channel
+      target="_blank"
+      rel="noreferrer"
+      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
+    >
+      <Youtube className="w-5 h-5" />
+    </a>
+  </div>
+          </div>
           </div>
         </div>
       </section>
