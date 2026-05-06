@@ -345,12 +345,10 @@ const Services = () => (
       </div>
     </section>
 
-  
-
     <FestiveGallerySection />
 
     {/* Testimonials Section */}
-    <section className="section-padding gradient-cream">
+    {/* <section className="section-padding gradient-cream">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-gold-dark uppercase tracking-[0.3em] text-sm font-medium">Trust & Credibility</span>
@@ -383,7 +381,7 @@ const Services = () => (
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
 
     {/* Contact CTA Banner */}
     {/* <section className="py-20 relative overflow-hidden">
