@@ -162,7 +162,7 @@ const About = () => (
       </div>
     </section>
 
-      <JourneySection story={undefined} />
+     <JourneySection />
 
       <SareeVideoSection />
 
