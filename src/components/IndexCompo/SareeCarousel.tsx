@@ -88,6 +88,8 @@
 
 
 
+
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -136,13 +138,13 @@ const SareeCarousel = () => {
 
         {/* LEFT - CAROUSEL */}
         <div className="relative w-full">
-          <div className="w-full h-[300px] md:h-[380px] bg-white flex items-center justify-center overflow-hidden rounded-2xl shadow-lg">
-            <img
-              src={images[current]}
-              alt="Saree"
-              className="w-full h-full object-contain transition duration-700"
-            />
-          </div>
+          <div className="w-full h-[300px] md:h-[380px] bg-white overflow-hidden rounded-2xl shadow-lg">
+  <img
+    src={images[current]}
+    alt="Saree"
+    className="w-full h-full object-cover object-center transition duration-700"
+  />
+      </div>
 
           {/* Buttons */}
           <button
