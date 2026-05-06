@@ -118,6 +118,8 @@ import showcaseImg from "@/assets/showcase-video.jpg";
 import s6 from "@/assets/saree-6.jpg";
 import JourneySection from "@/components/AboutCompo/JourneySection";
 import SareeVideoSection from "@/components/AboutCompo/SareeVideoSection";
+import JourneySections from "@/components/AboutCompo/JourneySection";
+import JourneyWave from "@/components/AboutCompo/JourneySection";
 
 
 const About = () => (
@@ -162,7 +164,7 @@ const About = () => (
       </div>
     </section>
 
-     <JourneySection story={undefined} />
+     <JourneyWave />
 
       <SareeVideoSection />
 
