@@ -284,6 +284,10 @@ import s4 from "@/assets/saree-4.jpg";
 import VideoSection from "@/components/IndexCompo/Video";
 import SareeCarousel from "@/components/IndexCompo/SareeCarousel";
 import SignatureCollections from "@/components/IndexCompo/SignatureCollections";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import HeroCarousel from "@/components/HeroCarousel";
+import Testimonials from "@/components/Testimonials";
+
 
 const collections = [
   { img: s1, name: "Banarasi Silk", tag: "Heritage Weave" },
@@ -310,7 +314,8 @@ const testimonials = [
 const Home = () => (
   <Layout>
     {/* HERO */}
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <HeroCarousel />
+    {/* <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroImg} alt="Pragati Sarees - Premium Banarasi Silk" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-overlay" />
@@ -357,7 +362,8 @@ const Home = () => (
           <div className="w-1 h-2 rounded-full bg-gold-light" />
         </div>
       </div>
-    </section>
+    </section> */}
+    
 
     {/* TRUST STRIP */}
     <section className="gradient-royal py-6">
@@ -380,7 +386,7 @@ const Home = () => (
               autoPlay loop muted playsInline poster={showcaseImg}
               className="w-full h-[600px] object-cover"
             >
-              <source src="https://videos.pexels.com/video-files/4994015/4994015-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+              <source src="https://www.pexels.com/download/video/28520946/" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 text-primary-foreground">
@@ -472,7 +478,7 @@ const Home = () => (
       <VideoSection />
 
     {/* WHY CHOOSE US */}
-    <section className="section-padding bg-background">
+    {/* <section className="section-padding bg-background">
       <div className="container mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-gold-dark uppercase tracking-[0.3em] text-sm font-medium">Why Choose Us</span>
@@ -493,10 +499,12 @@ const Home = () => (
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
+    <WhyChooseUs />
 
     {/* TESTIMONIALS */}
-    <section className="section-padding gradient-cream relative overflow-hidden">
+    <Testimonials />
+    {/* <section className="section-padding gradient-cream relative overflow-hidden">
       <Quote className="absolute top-10 left-10 w-40 h-40 text-gold/10" />
       <div className="container mx-auto relative">
         <div className="text-center max-w-2xl mx-auto mb-14">
@@ -521,31 +529,60 @@ const Home = () => (
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
 
     {/* CTA */}
     <section className="relative section-padding overflow-hidden">
-      <div className="absolute inset-0 gradient-royal" />
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${showcaseImg})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-      <div className="absolute inset-0 bg-gradient-overlay" />
-      <div className="container mx-auto relative text-center max-w-3xl">
-        <Sparkles className="w-12 h-12 text-gold-light mx-auto mb-6 animate-float" />
-        <h2 className="font-display text-4xl md:text-6xl text-primary-foreground mb-5 leading-tight">
-          Grow Your Saree Business <span className="text-gradient-gold italic">With Us Today</span>
-        </h2>
-        <p className="text-primary-foreground/85 text-lg mb-8 font-serif italic">
-          Partner with India's trusted Banarasi Satin Silk manufacturer. Better margins, better designs, better growth.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full gradient-gold text-primary font-semibold shadow-gold hover:scale-105 transition-transform">
-            Enquire Now <ArrowRight className="w-5 h-5" />
-          </Link>
-          <a href="tel:+919328015392" className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-gold-light text-primary-foreground hover:bg-primary-foreground/10 transition-all">
-            <Phone className="w-5 h-5" /> Call +91 93280 15392
-          </a>
-        </div>
-      </div>
-    </section>
+
+  {/* 🔹 Background Image (MAIN) */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: `url(${showcaseImg})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
+
+  {/* 🔹 LIGHT DARK OVERLAY (only one, balanced) */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  {/* 🔹 OPTIONAL GOLD GRADIENT (very subtle) */}
+  <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-yellow-500/20"></div>
+
+  {/* 🔹 CONTENT */}
+  <div className="container mx-auto relative text-center max-w-3xl">
+    <Sparkles className="w-12 h-12 text-yellow-300 mx-auto mb-6 animate-float" />
+
+    <h2 className="font-display text-4xl md:text-6xl text-white mb-5 leading-tight">
+      Grow Your Saree Business{" "}
+      <span className="text-yellow-400 italic">With Us Today</span>
+    </h2>
+
+    <p className="text-white/90 text-lg mb-8 font-serif italic">
+      Partner with India's trusted Banarasi Satin Silk manufacturer. Better margins, better designs, better growth.
+    </p>
+
+    <div className="flex flex-wrap gap-4 justify-center">
+      <Link
+        to="/contact"
+        className="inline-flex items-center gap-2 px-8 py-4 rounded-full 
+        bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 
+        text-white font-semibold shadow-lg hover:scale-105 transition"
+      >
+        Enquire Now <ArrowRight className="w-5 h-5" />
+      </Link>
+
+      <a
+        href="tel:+919328015392"
+        className="inline-flex items-center gap-2 px-8 py-4 rounded-full 
+        border-2 border-white text-white hover:bg-white/10 transition"
+      >
+        <Phone className="w-5 h-5" /> Call +91 93280 15392
+      </a>
+    </div>
+  </div>
+</section>
   </Layout>
 );
 

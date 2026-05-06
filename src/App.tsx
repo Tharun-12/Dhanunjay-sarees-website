@@ -9,6 +9,11 @@ import Services from "./pages/Services.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AdminLayout from "./components/AdminLayout.tsx";
+import AdminLogin from "./pages/Login.tsx";
+import ContactTable from "./pages/ContactTable.tsx";
+import ForgotPassword from "./components/ForgotPassword.tsx";
+import ResetPassword from "./components/ResetPassword.tsx";
 
 const queryClient = new QueryClient();
 
@@ -19,11 +24,24 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Admin Routes - Without Layout */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          
+          {/* Protected Admin Routes with Layout */}
+          <Route element={<AdminLayout />}>
+            <Route path="/contacts" element={<ContactTable />} />
+          </Route>
+          
+          {/* 404 - Not Found - Must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

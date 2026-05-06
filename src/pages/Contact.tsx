@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Mail, Phone, MapPin, MessageCircle, Send, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, Facebook, Instagram } from "lucide-react";
 import Layout from "@/components/site/Layout";
 import PageHero from "@/components/site/PageHero";
 import { toast } from "sonner";
@@ -8,30 +8,68 @@ import heroImg from "@/assets/hero-contact.jpg";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Name is required").max(100),
+  email: z.string().trim().email("Valid email is required").max(100),
   phone: z.string().trim().min(7, "Valid phone required").max(20),
   message: z.string().trim().min(5, "Please share a few details").max(1000),
 });
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Get API URL from environment or use default
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form
     const result = schema.safeParse(form);
     if (!result.success) {
       toast.error(result.error.errors[0].message);
       return;
     }
+    
     setSubmitting(true);
-    const subject = encodeURIComponent(`Wholesale Enquiry from ${form.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`);
-    window.location.href = `mailto:bankteshcreationpvtltd@gmail.com?subject=${subject}&body=${body}`;
-    setTimeout(() => {
-      toast.success("Opening your email app — your enquiry is ready to send!");
+    
+    try {
+      // Send data to backend API
+      const response = await fetch(`${API_BASE_URL}/api/contact/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        // Success - show appropriate message based on email status
+        if (data.emailError) {
+          toast.warning("Enquiry submitted but email notification failed. We'll still contact you soon!");
+        } else {
+          toast.success("Enquiry submitted successfully! A confirmation email has been sent to you.");
+        }
+        
+        // Reset form
+        setForm({ name: "", email: "", phone: "", message: "" });
+      } else {
+        // Handle error response
+        toast.error(data.message || "Failed to submit enquiry. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      
+      // Fallback to email client if API fails
+      toast.error("Network error. Opening email as backup...");
+      
+      const subject = encodeURIComponent(`Wholesale Enquiry from ${form.name}`);
+      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`);
+      window.location.href = `mailto:bankteshcreationpvtltd@gmail.com?subject=${subject}&body=${body}`;
+    } finally {
       setSubmitting(false);
-      setForm({ name: "", phone: "", message: "" });
-    }, 600);
+    }
   };
 
   return (
@@ -51,34 +89,57 @@ const Contact = () => {
             <h2 className="font-display text-3xl md:text-4xl text-primary mt-2 mb-8">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Your Name</label>
+                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Your Name *</label>
                 <input
-                  value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  maxLength={100} placeholder="Enter your full name"
+                  value={form.name} 
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  maxLength={100} 
+                  placeholder="Enter your full name"
+                  required
                   className="w-full px-5 py-4 rounded-xl bg-muted border border-border focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Phone Number</label>
+                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Email Address *</label>
                 <input
-                  value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  maxLength={20} placeholder="+91 XXXXX XXXXX"
+                  type="email"
+                  value={form.email} 
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  maxLength={100} 
+                  placeholder="your@email.com"
+                  required
                   className="w-full px-5 py-4 rounded-xl bg-muted border border-border focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Message</label>
+                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Phone Number *</label>
+                <input
+                  value={form.phone} 
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  maxLength={20} 
+                  placeholder="+91 XXXXX XXXXX"
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-muted border border-border focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-sm uppercase tracking-wider text-muted-foreground mb-2">Message *</label>
                 <textarea
-                  value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  maxLength={1000} rows={5} placeholder="Tell us about your requirements..."
+                  value={form.message} 
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  maxLength={1000} 
+                  rows={5} 
+                  placeholder="Tell us about your requirements..."
+                  required
                   className="w-full px-5 py-4 rounded-xl bg-muted border border-border focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-all resize-none"
                 />
               </div>
               <button
-                type="submit" disabled={submitting}
+                type="submit" 
+                disabled={submitting}
                 className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full gradient-royal text-primary-foreground font-semibold shadow-luxury hover:scale-[1.02] transition-transform disabled:opacity-60"
               >
-                {submitting ? "Sending..." : <>Send Enquiry <Send className="w-5 h-5" /></>}
+                {submitting ? "Submitting..." : <>Send Enquiry <Send className="w-5 h-5" /></>}
               </button>
             </form>
           </div>
@@ -123,52 +184,12 @@ const Contact = () => {
             </a>
 
             <div className="p-6 rounded-2xl bg-card border border-border">
-  <div className="text-xs uppercase tracking-widest text-gold-dark mb-3">
-    Follow Us
-  </div>
-
-  <div className="flex gap-3">
-    {/* Facebook */}
-    <a
-      href="https://www.facebook.com/profile.php?id=61580419684127"
-      target="_blank"
-      rel="noreferrer"
-      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
-    >
-      <Facebook className="w-5 h-5" />
-    </a>
-
-    {/* Instagram */}
-    <a
-      href="https://www.instagram.com/pragati.saree/"
-      target="_blank"
-      rel="noreferrer"
-      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
-    >
-      <Instagram className="w-5 h-5" />
-    </a>
-
-    {/* Twitter */}
-    <a
-      href="https://twitter.com/"  // replace with your actual Twitter link
-      target="_blank"
-      rel="noreferrer"
-      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
-    >
-      <Twitter className="w-5 h-5" />
-    </a>
-
-    {/* YouTube */}
-    <a
-      href="https://www.youtube.com/"  // replace with your actual YouTube channel
-      target="_blank"
-      rel="noreferrer"
-      className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"
-    >
-      <Youtube className="w-5 h-5" />
-    </a>
-  </div>
-          </div>
+              <div className="text-xs uppercase tracking-widest text-gold-dark mb-3">Follow Us</div>
+              <div className="flex gap-3">
+                <a href="https://www.facebook.com/profile.php?id=61580419684127" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"><Facebook className="w-5 h-5" /></a>
+                <a href="https://www.instagram.com/pragati.saree/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full gradient-royal text-primary-foreground flex items-center justify-center hover:scale-110 transition-transform"><Instagram className="w-5 h-5" /></a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
