@@ -345,8 +345,6 @@ const Services = () => (
       </div>
     </section>
 
-  
-
     <FestiveGallerySection />
 
     {/* Testimonials Section */}
