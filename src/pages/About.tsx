@@ -114,7 +114,7 @@ import { Heart, Award, Users, Sparkles, ArrowRight } from "lucide-react";
 import Layout from "@/components/site/Layout";
 import PageHero from "@/components/site/PageHero";
 import heroImg from "@/assets/hero-about.jpg";
-import showcaseImg from "@/assets/showcase-video.jpg";
+import showcaseImg from "@/assets/sareepose2.jpg";
 import s6 from "@/assets/saree-6.jpg";
 import JourneySection from "@/components/AboutCompo/JourneySection";
 import SareeVideoSection from "@/components/AboutCompo/SareeVideoSection";

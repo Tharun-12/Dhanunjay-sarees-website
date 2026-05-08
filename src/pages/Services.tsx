@@ -100,12 +100,13 @@ import {
 import Layout from "@/components/site/Layout";
 import PageHero from "@/components/site/PageHero";
 import heroImg from "@/assets/hero-services.jpg";
-import s1 from "@/assets/saree-1.jpg";
+import s1 from "@/assets/sareepose.jpg";
 import s2 from "@/assets/saree-2.jpg";
 import s3 from "@/assets/saree-3.jpg";
 import s4 from "@/assets/saree-4.jpg";
 import StatsSection from "@/components/ServiceCompo/StatsSection";
 import FestiveGallerySection from "@/components/ServiceCompo/FestiveGallerySection";
+import RetainerBenefitsPage from "@/components/ServiceCompo/RetainerBenefitsPage";
 
 const services = [
   { icon: Factory, title: "Manufacturing", desc: "In-house production of premium Banarasi Satin Silk Sarees with strict quality control." },
@@ -296,7 +297,7 @@ const Services = () => (
     </section>
 
     {/* Key Benefits Grid */}
-    <section className="section-padding bg-background">
+    {/* <section className="section-padding bg-background">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-gold-dark uppercase tracking-[0.3em] text-sm font-medium">Why Partner With Us</span>
@@ -316,7 +317,9 @@ const Services = () => (
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
+
+    <RetainerBenefitsPage />
 
     {/* How It Works - Process Flow */}
     <section className="section-padding gradient-cream">
