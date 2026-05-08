@@ -97,6 +97,7 @@
 
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SareeVideoSection = () => {
   return (
@@ -136,9 +137,11 @@ const SareeVideoSection = () => {
             blend tradition with modern trends.
           </p>
 
-          <button className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full shadow-md transition w-fit">
-            Explore Collection
-          </button>
+         <Link to="/gallery">
+  <button className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full shadow-md transition w-fit">
+    Explore Collection
+  </button>
+</Link>
         </div>
 
       </div>
