@@ -141,7 +141,7 @@ const SareeVideoSection = () => {
   <button className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full shadow-md transition w-fit">
     Explore Collection
   </button>
-</Link>
+    </Link>
         </div>
 
       </div>
