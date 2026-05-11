@@ -15,6 +15,7 @@ import ContactTable from "./pages/ContactTable.tsx";
 import ForgotPassword from "./components/ForgotPassword.tsx";
 import ResetPassword from "./components/ResetPassword.tsx";
 import Terms from "./pages/Terms.tsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
           
           {/* Admin Routes - Without Layout */}
           <Route path="/admin" element={<AdminLogin />} />

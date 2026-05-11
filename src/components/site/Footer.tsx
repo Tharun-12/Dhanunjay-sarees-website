@@ -74,6 +74,8 @@
 
 
 
+
+
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, Phone, MapPin, Globe, Twitter, Youtube } from "lucide-react";
 
@@ -125,7 +127,8 @@ const Footer = () => {
                 ["/services", "Services"],
                 ["/gallery", "Gallery"],
                 ["/contact", "Contact"],
-                ["/terms", "Terms & Conditions"], // ✅ Added
+                ["/terms", "Terms & Conditions"], 
+                ["/privacypolicy", "Privacy Policy"],
               ].map(([to, l]) => (
                 <li key={to}>
                   <Link
@@ -233,3 +236,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
